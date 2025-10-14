@@ -97,3 +97,5 @@ def read_base_palette():
 if __name__ == "__main__":
     base_palette = read_base_palette()
     generated_palette = GeneratedPalette(base_palette)
+
+    
