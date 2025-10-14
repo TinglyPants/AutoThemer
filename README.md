@@ -18,3 +18,13 @@ Palette format conversion is handled with `.py` files in the `palette-format-con
 
 ## Config File Replacement Syntax
 In order for palettes to be placed into the new config files, they need to be given placeholder names and then replaced before being written. The syntax for this is very simple. As an example: `$AutoThemer(bg-light)` will be replaced with whatever the value of `bg-light` is in the chosen palette, after passing through the specified format conversion file.
+
+## Base Palette Syntax
+| Property | Options | Info |
+|----------|---------|------|
+| `theme`  | `dark`, `light` | Chooses dark or light theme. |
+| `background-style` | `neutral`, `colour` | `neutral` will have a standard grey shade background, `colour` will use the `background-colour` property to create background shades.|
+| `background-colour` | `#RRGGBB` | Used to determine the colout of the background if `background-style` set to `colour`. Otherwise it is ignored.|
+| `accent` | `#RRGGBB` | The accent colour for the palette. Used more sparingly, for items of importance. |
+| `primary` | `#RRGGBB` | The primary colour for the palette. Used in most places for most items. |
+| `error`, `warning`, `success`, `info` | `#RRGGBB` | Semantic colours for any errors, warnings, successes or information respectively. Default values will be used if left unspecified.
