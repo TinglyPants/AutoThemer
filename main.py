@@ -1,4 +1,5 @@
 from lib.base_palette import BasePalette
+from lib.generated_palette import GeneratedPalette
 from lib.validate import validate_hex_string
 import json
 import sys
@@ -95,3 +96,4 @@ def read_base_palette():
 
 if __name__ == "__main__":
     base_palette = read_base_palette()
+    generated_palette = GeneratedPalette(base_palette)
