@@ -1,7 +1,7 @@
 {
-    "theme": "dark",
+    "theme": "light",
     "background-style" : "colour",
-    "background-colour" : "#36424B",
-    "accent": "#c76456",
-    "primary": "#e4eabd"
+    "background-colour" : "#98795c",
+    "accent": "#3f8c78",
+    "primary": "#c04c4b"
 }

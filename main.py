@@ -3,6 +3,9 @@ from lib.generated_palette import GeneratedPalette
 from lib.validate import validate_hex_string
 import json
 import sys
+import os
+import re
+import subprocess
 
 def read_base_palette():
     # Read base-palette.json and return a BasePalette
@@ -92,10 +95,79 @@ def read_base_palette():
                 print(f"Info: {base_palette.info}")
         
         return base_palette
+    
+def save_generated_palette(generated_palette, palette_name):
+    with open(f"./generated-palettes/{palette_name}.json", "w") as palette_file:
+        palette_dict = {}
 
+        palette_dict["bg-dark"] = generated_palette.bg_dark
+        palette_dict["bg"] = generated_palette.bg
+        palette_dict["bg-light"] = generated_palette.bg_light
 
-if __name__ == "__main__":
-    base_palette = read_base_palette()
-    generated_palette = GeneratedPalette(base_palette)
+        palette_dict["text"] = generated_palette.text
+        palette_dict["text-muted"] = generated_palette.text_muted
+        
+        palette_dict["accent"] = generated_palette.accent
+        palette_dict["on-accent"] = generated_palette.on_accent
+
+        palette_dict["primary"] = generated_palette.primary
+        palette_dict["on-primary"] = generated_palette.on_primary
+
+        palette_dict["error"] = generated_palette.error
+        palette_dict["warning"] = generated_palette.warning
+        palette_dict["success"] = generated_palette.success
+        palette_dict["info"] = generated_palette.info
+
+        palette_json = json.dumps(palette_dict, indent=4)
+        palette_file.write(palette_json)
+
+def synchronise_palette(filename, palette_name):
+    # read .base
+    base_file_text = ""
+    with open(f"./synchronise-palettes/{filename}.base", "r") as base_file:
+        base_file_text = base_file.read()
+
+    target_output_directory = ""
+    converter = ""
+    with open(f"./synchronise-palettes/{filename}.output-settings.json", "r") as output_settings_file:
+        output_settings_json = json.load(output_settings_file)
+        target_output_directory = output_settings_json["output"]
+        converter = output_settings_json["converter"]
+
+    palette_dict = {}
+    with open(f"./generated-palettes/{palette_name}.json", "r") as palette_file:
+        palette_dict = json.loads(palette_file.read())
+
+    pattern = re.compile(r"\$AutoThemer\(.*?\)")
+
+    def substitution(match):
+        key = str(match.group(0)).removeprefix("$AutoThemer(").removesuffix(")")
+        hex = palette_dict[key]
+        result = subprocess.run(
+            ["python", f"./palette-format-converters/{converter}", hex],
+            capture_output=True,
+            text=True
+        )
+        return result.stdout.strip()
+    
+    result = pattern.sub(substitution, base_file_text)
+
+    with open(f"{target_output_directory}/{filename}", "w") as output_file:
+        output_file.write(result)
 
     
+
+if __name__ == "__main__":
+    palette_filename = sys.argv[1]
+    print(palette_filename)
+    if "--new" in sys.argv:
+        base_palette = read_base_palette()
+        generated_palette = GeneratedPalette(base_palette)
+        save_generated_palette(generated_palette, palette_filename)
+
+    synchronise_palettes_path = "./synchronise-palettes"
+
+    for filename in os.listdir(synchronise_palettes_path):
+        if filename.endswith(".base"):
+            filename_without_extension = filename.rsplit('.base', 1)[0]
+            synchronise_palette(filename_without_extension, palette_filename)

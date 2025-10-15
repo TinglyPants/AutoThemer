@@ -5,7 +5,7 @@ body{
 }
 
 .background-main{
-    background-color: rgb(36, 47, 56);
+    background-color: rgb(216, 183, 152);
     display: flex;
     height: 100%;
     width: 100%;
@@ -14,7 +14,7 @@ body{
 }
 
 .background-card{
-    background-color: rgb(48, 60, 69);
+    background-color: rgb(233, 199, 168);
     display: flex;
     flex-direction: column;
     margin: 10px;
@@ -24,27 +24,27 @@ body{
 }
 
 .text{
-    color: rgb(242, 242, 242);
+    color: rgb(13, 13, 13);
 }
 
 .text-muted{
-    color: rgb(179, 179, 179)
+    color: rgb(77, 77, 77);
 }
 
 .accent-button{
     border-radius: 5px;
     border: 0px;
-    background-color: rgb(61, 73, 83);
-    color: rgb(188, 68, 71);
+    background-color: rgb(249, 215, 183);
+    color: rgb(63, 140, 120);
     padding: 5px;
     margin: 10px;
 }
 
 .accent-outline{
     border-radius: 5px;
-    background-color: rgb(61, 73, 83);
-    color: rgb(188, 68, 71);
-    border-color: rgb(188, 68, 71);
+    background-color: rgb(249, 215, 183);
+    color: rgb(63, 140, 120);
+    border-color: rgb(63, 140, 120);
     padding: 3px;
     margin: 10px;
 }
@@ -52,8 +52,8 @@ body{
 .accent-filled{
     border-radius: 5px;
     border: 0px;
-    background-color: rgb(59, 0, 0);
-    color: rgb(188, 68, 71);
+    background-color: rgb(63, 140, 120);
+    color: rgb(0, 27, 18);
     padding: 5px;
     margin: 10px;
 }
@@ -61,17 +61,17 @@ body{
 .primary-button{
     border-radius: 5px;
     border: 0px;
-    background-color: rgb(61, 73, 83);
-    color: rgb(105, 109, 69);
+    background-color: rgb(249, 215, 183);
+    color: rgb(192, 76, 75);
     padding: 5px;
     margin: 10px;
 }
 
 .primary-outline{
     border-radius: 5px;
-    background-color: rgb(61, 73, 83);
-    color: rgb(105, 109, 69);
-    border-color: rgb(105, 109, 69);
+    background-color: rgb(249, 215, 183);
+    color: rgb(192, 76, 75);
+    border-color: rgb(192, 76, 75);
     padding: 3px;
     margin: 10px;
 }
@@ -79,8 +79,8 @@ body{
 .primary-filled{
     border-radius: 5px;
     border: 0px;
-    background-color: rgb(105, 109, 69);
-    color: rgb(197, 181, 125);
+    background-color: rgb(192, 76, 75);
+    color: rgb(81, 0, 6);
     padding: 5px;
     margin: 10px;
 }

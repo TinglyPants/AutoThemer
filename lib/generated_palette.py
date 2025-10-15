@@ -26,6 +26,12 @@ class GeneratedPalette:
         self.on_primary = ""
         self.generate_primary()
 
+        # Semantic
+        self.error = base_palette.error
+        self.warning = base_palette.warning
+        self.success = base_palette.success
+        self.info = base_palette.info
+
     def generate_bg(self):
         bg_oklch = Color(self.base_palette.background_colour).convert("oklch")
 
@@ -58,11 +64,11 @@ class GeneratedPalette:
 
             if primary_oklch["l"] > 0.5:
                 self.primary = primary_oklch.convert("srgb").to_string(hex=True)
-                primary_oklch["l"] -= 0.4
+                primary_oklch["l"] -= 0.3
                 self.on_primary = primary_oklch.convert("srgb").to_string(hex=True)
             else:
                 self.on_primary = primary_oklch.convert("srgb").to_string(hex=True)
-                primary_oklch["l"] += 0.4
+                primary_oklch["l"] += 0.3
                 self.primary = primary_oklch.convert("srgb").to_string(hex=True)
 
         if self.base_palette.theme == "dark":
@@ -71,11 +77,11 @@ class GeneratedPalette:
 
             if primary_oklch["l"] > 0.5:
                 self.on_primary = primary_oklch.convert("srgb").to_string(hex=True)
-                primary_oklch["l"] -= 0.4
+                primary_oklch["l"] -= 0.3
                 self.primary = primary_oklch.convert("srgb").to_string(hex=True)
             else:
                 self.primary = primary_oklch.convert("srgb").to_string(hex=True)
-                primary_oklch["l"] += 0.4
+                primary_oklch["l"] += 0.3
                 self.on_primary = primary_oklch.convert("srgb").to_string(hex=True)
 
     def generate_accent(self):
