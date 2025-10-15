@@ -28,3 +28,7 @@ In order for palettes to be placed into the new config files, they need to be gi
 | `accent` | `#RRGGBB` | The accent colour for the palette. Used more sparingly, for items of importance. |
 | `primary` | `#RRGGBB` | The primary colour for the palette. Used in most places for most items. |
 | `error`, `warning`, `success`, `info` | `#RRGGBB` | Semantic colours for any errors, warnings, successes or information respectively. Default values will be used if left unspecified.
+
+## Usage
+`python ./main.py "name-of-exising-palette"` will apply configuration based on the palette specified
+`python ./main.py "name-of-palette" --new` will generate a palette from `base-palette.json` and either create a new palette or override an existing one. It then applies that palette.
